@@ -5,7 +5,7 @@ import Typography from 'material-ui/Typography';
 import Avatar from 'material-ui/Avatar';
 import Paper from 'material-ui/Paper';
 
-import titleInitials from '../utils/title-initials';
+import titleInitials from '../../utils/title-initials';
 
 const styles = theme => ({
   messageWrapper: {

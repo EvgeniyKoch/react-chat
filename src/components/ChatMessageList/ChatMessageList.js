@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
-import ChatMessage from './ChatMessage';
+import ChatMessage from '../ChatMessage';
 
 const styles = theme => ({
   messagesWrapper: {
