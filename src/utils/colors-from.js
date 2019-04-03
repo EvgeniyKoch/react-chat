@@ -7,7 +7,7 @@ import {
   indigo,
   lime,
   orange,
-} from 'material-ui/colors';
+} from '@material-ui/core/colors';
 
 
 const colors = [red, purple, blue, green, pink, indigo, lime, orange];
