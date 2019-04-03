@@ -2,9 +2,8 @@ import React from 'react';
 
 import { withStyles } from 'material-ui/styles';
 import { ListItem, ListItemText } from 'material-ui/List';
-import Avatar from 'material-ui/Avatar';
 
-import titleInitials from '../../utils/title-initials';
+import Avatar from '../Avatar';
 
 const styles = theme => ({
   // ...
@@ -12,7 +11,7 @@ const styles = theme => ({
 
 const ChatListItem = ({ classes, title }) => (
   <ListItem button>
-    <Avatar>{titleInitials(title)}</Avatar>
+    <Avatar colorFrom={title}>{title}</Avatar>
     <ListItemText primary={title}/>
   </ListItem>
 );

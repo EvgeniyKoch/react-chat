@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Input from 'material-ui/Input';
@@ -17,7 +17,7 @@ const styles = theme => ({
   },
 });
 
-class MessageInput extends React.Component {
+class MessageInput extends Component {
   render() {
     const { classes } = this.props;
 

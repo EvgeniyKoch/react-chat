@@ -1,5 +1,7 @@
 import React from 'react';
+
 import classnames from 'classnames';
+
 import { withStyles } from 'material-ui';
 import Typography from 'material-ui/Typography';
 import Avatar from 'material-ui/Avatar';

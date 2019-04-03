@@ -1,9 +1,10 @@
 import React from 'react';
+ 
 import { withStyles } from 'material-ui/styles'
 import ChatMessageList from '../ChatMessageList';
 import MessageInput from '../MessageInput';
 
-const styles = theme => ({
+const styles = () => ({
   chatLayout: {
     display: 'flex',
     justifyContent: 'center',
