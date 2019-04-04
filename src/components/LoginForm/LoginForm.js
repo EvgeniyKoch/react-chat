@@ -42,10 +42,9 @@ class LoginForm extends Component {
     event.preventDefault();
 
     const { username, password } = this.state;
+    const { onSubmit } = this.props;
 
-    console.log('Login:', username.value, password.value);
-
-    // ...
+    onSubmit(username.value, password.value);
   }
 
   render() {

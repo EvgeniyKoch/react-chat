@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import { withStyles } from 'material-ui';
 import AppBar from 'material-ui/AppBar';
@@ -20,7 +21,13 @@ const styles = theme => ({
   },
 });
 
-class WelcomePage extends React.Component {
+class WelcomePage extends Component {
+  static propTypes = {
+    classes: PropTypes.object,
+    signup: PropTypes.func,
+    login: PropTypes.func,
+  }
+
   state = {
     activeTab: 0,
   };
@@ -30,7 +37,7 @@ class WelcomePage extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, signup, login } = this.props;
     const { activeTab } = this.state;
 
     return (
@@ -56,8 +63,8 @@ class WelcomePage extends React.Component {
                 </Tabs>
               </AppBar>
               <div className={classes.tabContent}>
-                {activeTab === 0 && <LoginForm />}
-                {activeTab === 1 && <SignupForm />}
+                {activeTab === 0 && <LoginForm onSubmit={login} />}
+                {activeTab === 1 && <SignupForm onSubmit={signup} />}
               </div>
             </Paper>
           </Grid>

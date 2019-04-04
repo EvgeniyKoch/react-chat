@@ -64,23 +64,9 @@ class SignupForm extends Component {
     }
 
     const { username, password } = this.state;
+    const { onSubmit } = this.props;
 
-    console.log('Sign up:', username.value, password.value);
-
-    fetch('http://localhost:8000/v1/signup', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        username: username.value,
-        password: password.value,
-      }),
-    })
-      .then(res => res.json())
-      .then(data => console.log(data))
-      .catch(e => console.error(e));
+    onSubmit(username.value, password.value);
   };
 
   render() {

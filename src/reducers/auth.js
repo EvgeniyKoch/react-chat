@@ -12,10 +12,16 @@ const initialState = {
 
 const auth = (state = initialState, action) => {
   switch (action.type) {
-    case SIGNUP_REQUEST:
-    case LOGIN_REQUEST:
-    case LOGOUT_REQUEST:
-      return state;
+    case SIGNUP_SUCCESS:
+    case LOGIN_SUCCESS:
+      return {
+
+      };
+    case SIGNUP_FAILURE:
+    case LOGIN_FAILURE:
+      return {
+
+      };
     default:
       return state;
   }
