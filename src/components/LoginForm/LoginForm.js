@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import { withStyles } from 'material-ui';
 import TextField from 'material-ui/TextField';
@@ -11,6 +12,10 @@ const styles = theme => ({
 });
 
 class LoginForm extends Component {
+  static propTypes = {
+    classes: PropTypes.object,
+  }
+
   state = {
     username: {
       value: '',
@@ -22,9 +27,15 @@ class LoginForm extends Component {
     },
   }
 
+<<<<<<< HEAD
   handleInputChange = (event) => {
     event.persist();
     const { name, value } = event.target;
+=======
+  handleInputChange = (e) => {
+    e.persist();
+    const { name, value } = e.target;
+>>>>>>> e1084829e5508346e1a58416947399804308ec30
     this.setState(prevState => ({
       [name]: {
         ...prevState[name],
@@ -82,7 +93,7 @@ class LoginForm extends Component {
           color="primary"
           className={classes.signUpButton}
         >
-          Login
+          {'Login'}
         </Button>
       </form>
     );
