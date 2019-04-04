@@ -1,5 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
+import {
+  BrowserRouter as Router, Route, Switch, Redirect,
+} from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import { withStyles } from 'material-ui/styles';
 
@@ -16,7 +19,7 @@ const styles = theme => ({
   },
 });
 
-const App =({ classes }) => (
+const App = ({ classes }) => (
   <Router>
     <div className={classes.root}>
       <Switch>
@@ -27,5 +30,9 @@ const App =({ classes }) => (
     </div>
   </Router>
 );
+
+App.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles)(App);

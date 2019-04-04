@@ -1,4 +1,8 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+import fetch from 'isomorphic-fetch';
+
 import { withStyles } from 'material-ui';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
@@ -6,10 +10,14 @@ import Button from 'material-ui/Button';
 const styles = theme => ({
   signUpButton: {
     marginTop: theme.spacing.unit * 2,
-  }
-})
+  },
+});
 
 class SignupForm extends Component {
+  static propTypes = {
+    classes: PropTypes.object.isRequired,
+  };
+
   state = {
     username: {
       value: '',
@@ -23,7 +31,7 @@ class SignupForm extends Component {
       value: '',
       isValid: true,
     },
-  }
+  };
 
   validate = () => {
     const { password, repeatedPassword } = this.state;
@@ -35,37 +43,18 @@ class SignupForm extends Component {
     });
 
     return isValid;
-  }
+  };
 
-  handleUsernameInputChange = (event) => {
-    event.persist();
-    this.setState((prevState) => ({
-      username: {
-        ...prevState.username,
-        value: event.target.value,
+  handleInputChange = (e) => {
+    e.persist();
+    const { name, value } = e.target;
+    this.setState(prevState => ({
+      [name]: {
+        ...prevState[name],
+        value,
       },
     }));
-  }
-
-  handlePasswordInputChange = (event) => {
-    event.persist();
-    this.setState((prevState) => ({
-      password: {
-        ...prevState.password,
-        value: event.target.value,
-      },
-    }));
-  }
-
-  handleRepeatedPasswordInputChange = (event) => {
-    event.persist();
-    this.setState((prevState) => ({
-      repeatedPassword: {
-        ...prevState.repeatedPassword,
-        value: event.target.value,
-      },
-    }));
-  }
+  };
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -78,8 +67,21 @@ class SignupForm extends Component {
 
     console.log('Sign up:', username.value, password.value);
 
-    // ...
-  }
+    fetch('http://localhost:8000/v1/signup', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: username.value,
+        password: password.value,
+      }),
+    })
+      .then(res => res.json())
+      .then(data => console.log(data))
+      .catch(e => console.error(e));
+  };
 
   render() {
     const { classes } = this.props;
@@ -93,10 +95,11 @@ class SignupForm extends Component {
           label="Username"
           placeholder="Type your username..."
           type="text"
+          name="username"
           margin="normal"
           autoComplete="username"
           value={username.value}
-          onChange={this.handleUsernameInputChange}
+          onChange={this.handleInputChange}
           error={!username.isValid}
         />
         <TextField
@@ -105,10 +108,11 @@ class SignupForm extends Component {
           label="Password"
           placeholder="Type your username..."
           type="password"
+          name="password"
           margin="normal"
           autoComplete="new-password"
           value={password.value}
-          onChange={this.handlePasswordInputChange}
+          onChange={this.handleInputChange}
           error={!password.isValid}
         />
         <TextField
@@ -117,10 +121,11 @@ class SignupForm extends Component {
           label="Repeat password"
           placeholder="Type your username..."
           type="password"
+          name="repeatedPassword"
           margin="normal"
           autoComplete="new-password"
           value={repeatedPassword.value}
-          onChange={this.handleRepeatedPasswordInputChange}
+          onChange={this.handleInputChange}
           error={!repeatedPassword.isValid}
         />
         <Button
@@ -130,7 +135,7 @@ class SignupForm extends Component {
           color="primary"
           className={classes.signUpButton}
         >
-          Signup
+          {'Signup'}
         </Button>
       </form>
     );
