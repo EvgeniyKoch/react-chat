@@ -27,15 +27,9 @@ class LoginForm extends Component {
     },
   }
 
-<<<<<<< HEAD
-  handleInputChange = (event) => {
-    event.persist();
-    const { name, value } = event.target;
-=======
   handleInputChange = (e) => {
     e.persist();
     const { name, value } = e.target;
->>>>>>> e1084829e5508346e1a58416947399804308ec30
     this.setState(prevState => ({
       [name]: {
         ...prevState[name],

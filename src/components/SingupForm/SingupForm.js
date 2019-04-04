@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
-=======
 import PropTypes from 'prop-types';
 
 import fetch from 'isomorphic-fetch';
 
->>>>>>> e1084829e5508346e1a58416947399804308ec30
 import { withStyles } from 'material-ui';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
@@ -46,30 +43,18 @@ class SignupForm extends Component {
     });
 
     return isValid;
-<<<<<<< HEAD
   }
 
   handleInputChange = (event) => {
     event.persist();
     const { name, value } = event.target;
-=======
-  };
-
-  handleInputChange = (e) => {
-    e.persist();
-    const { name, value } = e.target;
->>>>>>> e1084829e5508346e1a58416947399804308ec30
     this.setState(prevState => ({
       [name]: {
         ...prevState[name],
         value,
       },
     }));
-<<<<<<< HEAD
-  }
-=======
   };
->>>>>>> e1084829e5508346e1a58416947399804308ec30
 
   handleSubmit = (event) => {
     event.preventDefault();
