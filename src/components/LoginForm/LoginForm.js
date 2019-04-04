@@ -7,8 +7,8 @@ import Button from 'material-ui/Button';
 const styles = theme => ({
   signUpButton: {
     marginTop: theme.spacing.unit * 2,
-  }
-})
+  },
+});
 
 class LoginForm extends Component {
   state = {
@@ -22,23 +22,12 @@ class LoginForm extends Component {
     },
   }
 
-  handleUsernameInputChange = (event) => {
+  handleInputChange = (event) => {
     event.persist();
-    const { value } = event.target;
-    this.setState((prevState) => ({
-      username: {
-        ...prevState.username,
-        value,
-      },
-    }));
-  }
-
-  handlePasswordInputChange = (event) => {
-    event.persist();
-    const { value } = event.target;
-    this.setState((prevState) => ({
-      password: {
-        ...prevState.password,
+    const { name, value } = event.target;
+    this.setState(prevState => ({
+      [name]: {
+        ...prevState[name],
         value,
       },
     }));
@@ -66,10 +55,11 @@ class LoginForm extends Component {
           label="Username"
           placeholder="Type your username..."
           type="text"
+          name="username"
           margin="normal"
           autoComplete="username"
           value={username.value}
-          onChange={this.handleUsernameInputChange}
+          onChange={this.handleInputChange}
           error={!username.isValid}
         />
         <TextField
@@ -78,10 +68,11 @@ class LoginForm extends Component {
           label="Password"
           placeholder="Type your username..."
           type="password"
+          name="password"
           margin="normal"
           autoComplete="current-password"
           value={password.value}
-          onChange={this.handlePasswordInputChange}
+          onChange={this.handleInputChange}
           error={!password.isValid}
         />
         <Button

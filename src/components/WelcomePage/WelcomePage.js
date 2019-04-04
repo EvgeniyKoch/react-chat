@@ -1,31 +1,31 @@
-import React from "react";
+import React from 'react';
 
-import { withStyles } from "material-ui";
-import AppBar from "material-ui/AppBar";
-import Toolbar from "material-ui/Toolbar";
-import Typography from "material-ui/Typography";
-import Grid from "material-ui/Grid";
-import Paper from "material-ui/Paper";
-import Tabs, { Tab } from "material-ui/Tabs";
-import LoginForm from "../LoginForm";
-import SignupForm from "../SingupForm";
+import { withStyles } from 'material-ui';
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
+import Grid from 'material-ui/Grid';
+import Paper from 'material-ui/Paper';
+import Tabs, { Tab } from 'material-ui/Tabs';
+import LoginForm from '../LoginForm';
+import SignupForm from '../SingupForm';
 
 const styles = theme => ({
   paper: {
     marginTop: 64 + theme.spacing.unit * 3,
-    width: 500
+    width: 500,
   },
   tabContent: {
-    padding: theme.spacing.unit * 3
-  }
+    padding: theme.spacing.unit * 3,
+  },
 });
 
 class WelcomePage extends React.Component {
   state = {
-    activeTab: 0
+    activeTab: 0,
   };
 
-  handleTabChage = (event, value) => {
+  handleTabChange = (event, value) => {
     this.setState({ activeTab: value });
   };
 
@@ -48,7 +48,7 @@ class WelcomePage extends React.Component {
               <AppBar position="static" color="default">
                 <Tabs
                   value={activeTab}
-                  onChange={this.handleTabChage}
+                  onChange={this.handleTabChange}
                   fullWidth
                 >
                   <Tab label="Login" />
