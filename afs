@@ -1,0 +1,66 @@
+[33mcommit 6f5f7c775a3f73c8f2736f9e7a30bf92ed8d8262[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Паровоз <parovoz@MacBook-Pro-Parovoz.local>
+Date:   Thu Apr 4 23:31:30 2019 +0300
+
+    continued set redux2
+
+[33mcommit 8e613862fb8c1bee18621c1983bd5a719cea27cb[m
+Author: Паровоз <parovoz@MacBook-Pro-Parovoz.local>
+Date:   Thu Apr 4 22:25:03 2019 +0300
+
+    continued set redux
+
+[33mcommit 4719940bc7cd04c2733cebf2af132b1187ed8c49[m
+Merge: 391f01d e108482
+Author: Паровоз <parovoz@MacBook-Pro-Parovoz.local>
+Date:   Thu Apr 4 20:56:24 2019 +0300
+
+    add coflict git
+
+[33mcommit 391f01da66fe58d342f4dc3841fdbb8d93f2a4d3[m
+Author: Паровоз <parovoz@MacBook-Pro-Parovoz.local>
+Date:   Thu Apr 4 20:55:37 2019 +0300
+
+    add coflict git
+
+[33mcommit e1084829e5508346e1a58416947399804308ec30[m
+Author: Kochetov Evgeniy <kochetov@reksoft.ru>
+Date:   Thu Apr 4 19:04:23 2019 +0300
+
+    added redux
+
+[33mcommit a9c9215409d9ad834806e991a52b55051b376a6d[m
+Author: Kochetov Evgeniy <kochetov@reksoft.ru>
+Date:   Thu Apr 4 15:37:29 2019 +0300
+
+    fix add
+
+[33mcommit 5286a78b0031c481d014aecc66c216d9c503a088[m
+Author: Паровоз <parovoz@MacBook-Pro-Parovoz.local>
+Date:   Wed Apr 3 21:23:07 2019 +0300
+
+    fix bag eslintkej
+
+[33mcommit 6a473a04c8e69d096566da3630b4eebe76881923[m
+Author: Kochetov Evgeniy <kochetov@reksoft.ru>
+Date:   Wed Apr 3 17:53:23 2019 +0300
+
+    change color avatar
+
+[33mcommit e34782d2aab5b4ede1e87582a92eda5b98978a4a[m
+Author: Kochetov Evgeniy <kochetov@reksoft.ru>
+Date:   Wed Apr 3 16:50:55 2019 +0300
+
+    change page login and singout
+
+[33mcommit 22071ca118009f8a80bea89b37cad85a762d1fc1[m
+Author: Паровоз <parovoz@MacBook-Pro-Parovoz.local>
+Date:   Sun Mar 31 22:39:16 2019 +0300
+
+    add folder
+
+[33mcommit f07785be7ed297f09fa15d92d69ae0fe3a3de9b1[m
+Author: Паровоз <parovoz@MacBook-Pro-Parovoz.local>
+Date:   Sun Mar 31 22:08:47 2019 +0300
+
+    init
