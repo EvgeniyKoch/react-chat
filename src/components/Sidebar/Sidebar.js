@@ -1,13 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { withStyles } from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
 import Divider from 'material-ui/Divider';
 import TextField from 'material-ui/TextField';
 import BottomNavigation, { BottomNavigationAction } from 'material-ui/BottomNavigation';
-import ChatList from '../ChatList';
 import RestoreIcon from 'material-ui-icons/Restore';
 import ExploreIcon from 'material-ui-icons/Explore';
+import ChatList from '../ChatList';
 
 const styles = theme => ({
   drawerPaper: {
@@ -19,7 +20,7 @@ const styles = theme => ({
     ...theme.mixins.toolbar,
     paddingLeft: theme.spacing.unit * 3,
     paddingRight: theme.spacing.unit * 3,
-  }
+  },
 });
 
 const Sidebar = ({ classes, chats }) => (
@@ -44,5 +45,10 @@ const Sidebar = ({ classes, chats }) => (
     </BottomNavigation>
   </Drawer>
 );
+
+Sidebar.propTypes = {
+  classes: PropTypes.object,
+  chats: PropTypes.array,
+};
 
 export default withStyles(styles)(Sidebar);

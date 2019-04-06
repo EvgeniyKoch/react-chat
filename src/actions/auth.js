@@ -4,27 +4,44 @@ import {
   LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE,
 } from '../constants';
 
+
 export const signup = (username, password) => {
   return (dispatch) => {
     dispatch({
       type: SIGNUP_REQUEST,
     });
+
     return fetch('http://localhost:8000/v1/signup', {
       method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
       body: JSON.stringify({
         username,
         password,
       }),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
     })
       .then(res => res.json())
-      .then(json => dispatch({
-        type: SIGNUP_SUCCESS,
-        payload: json,
-      }))
+      .then((json) => {
+        if (json.success) {
+          return json;
+        }
+        throw new Error(json.message);
+      })
+      .then((json) => {
+        if (!json.token) {
+          throw new Error('Token has not been provided!');
+        }
+
+        // Save JWT to localStorage
+        localStorage.setItem('token', json.token);
+
+        dispatch({
+          type: SIGNUP_SUCCESS,
+          payload: json,
+        });
+      })
       .catch(reason => dispatch({
         type: SIGNUP_FAILURE,
         payload: reason,
@@ -40,7 +57,7 @@ export const login = (username, password) => {
     return fetch('http://localhost:8000/v1/login', {
       method: 'POST',
       headers: {
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -49,10 +66,25 @@ export const login = (username, password) => {
       }),
     })
       .then(res => res.json())
-      .then(json => dispatch({
-        type: LOGIN_SUCCESS,
-        payload: json,
-      }))
+      .then((json) => {
+        if (json.success) {
+          return json;
+        }
+        throw new Error(json.message);
+      })
+      .then((json) => {
+        if (!json.token) {
+          throw new Error('Token has not been provided!');
+        }
+
+        // Save JWT to localStorage
+        localStorage.setItem('token', json.token);
+
+        dispatch({
+          type: LOGIN_SUCCESS,
+          payload: json,
+        });
+      })
       .catch(reason => dispatch({
         type: LOGIN_FAILURE,
         payload: reason,

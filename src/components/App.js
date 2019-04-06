@@ -7,8 +7,7 @@ import PropTypes from 'prop-types';
 
 import { withStyles } from 'material-ui/styles';
 
-import WelcomePage from './WelcomePage';
-import ChatPage from './ChatPage';
+import { WelcomePage, ChatPage } from '../containers';
 import configureStore from '../store';
 
 const styles = theme => ({
@@ -28,7 +27,7 @@ const App = ({ classes }) => (
     <Router>
       <div className={classes.root}>
         <Switch>
-          <Route path="/welcome" component={WelcomePage} />
+          <Route exact path="/(welcome)?" component={WelcomePage} />
           <Route path="/chat" component={ChatPage} />
           <Redirect to="/" />
         </Switch>

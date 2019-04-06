@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { withStyles } from 'material-ui/styles';
 import ChatMessage from '../ChatMessage';
 
@@ -12,7 +14,12 @@ const styles = theme => ({
   },
 });
 
-class ChatMessageList extends React.Component {
+class ChatMessageList extends Component {
+  static propTypes = {
+    classes: PropTypes.object,
+    messages: PropTypes.array,
+  }
+
   componentDidMount() {
     this.scrollDownHistory();
   }
@@ -22,7 +29,8 @@ class ChatMessageList extends React.Component {
   }
 
   scrollDownHistory() {
-    const messagesWrapper = this.refs.messagesWrapper;
+    // eslint-disable-next-line react/no-string-refs
+    const { messagesWrapper } = this.refs;
     if (messagesWrapper) {
       messagesWrapper.scrollTop = messagesWrapper.scrollHeight;
     }
@@ -30,10 +38,12 @@ class ChatMessageList extends React.Component {
 
   render() {
     const { classes, messages } = this.props;
-  
+
     return (
+      // eslint-disable-next-line react/no-string-refs
       <div className={classes.messagesWrapper} ref="messagesWrapper">
         {messages && messages.map((message, index) => (
+          // eslint-disable-next-line react/no-array-index-key
           <ChatMessage key={index} {...message} />
         ))}
       </div>

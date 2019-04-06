@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
 import { withStyles } from 'material-ui';
 import AppBar from 'material-ui/AppBar';
@@ -26,6 +27,7 @@ class WelcomePage extends Component {
     classes: PropTypes.object,
     signup: PropTypes.func,
     login: PropTypes.func,
+    isAuthenticated: PropTypes.bool,
   }
 
   state = {
@@ -37,8 +39,14 @@ class WelcomePage extends Component {
   };
 
   render() {
-    const { classes, signup, login } = this.props;
+    const {
+      classes, signup, login, isAuthenticated,
+    } = this.props;
     const { activeTab } = this.state;
+
+    if (isAuthenticated) {
+      return <Redirect to="/chat" />;
+    }
 
     return (
       <React.Fragment>

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import fetch from 'isomorphic-fetch';
-
 import { withStyles } from 'material-ui';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
@@ -16,6 +14,7 @@ const styles = theme => ({
 class SignupForm extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
+    onSubmit: PropTypes.func.isRequired,
   };
 
   state = {

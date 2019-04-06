@@ -14,6 +14,7 @@ const styles = theme => ({
 class LoginForm extends Component {
   static propTypes = {
     classes: PropTypes.object,
+    onSubmit: PropTypes.func.isRequired,
   }
 
   state = {

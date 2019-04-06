@@ -4,10 +4,12 @@ import {
   LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE,
 } from '../constants';
 
+const token = localStorage.getItem('token');
+
 const initialState = {
-  isAuthenticated: false,
-  user: {},
-  token: '',
+  isAuthenticated: !!token,
+  user: null,
+  token,
 };
 
 const auth = (state = initialState, action) => {
@@ -15,12 +17,19 @@ const auth = (state = initialState, action) => {
     case SIGNUP_SUCCESS:
     case LOGIN_SUCCESS:
       return {
-
+        ...state,
+        isAuthenticated: true,
+        user: action.payload.user,
+        token: action.payload.token,
       };
     case SIGNUP_FAILURE:
     case LOGIN_FAILURE:
+    case LOGOUT_SUCCESS:
       return {
-
+        ...state,
+        isAuthenticated: false,
+        user: null,
+        token: '',
       };
     default:
       return state;
