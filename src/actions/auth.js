@@ -1,29 +1,15 @@
 import * as types from '../constants';
-
+import callApi from '../utils/call-api';
 
 export const signup = (username, password) => (dispatch) => {
   dispatch({
     type: types.SIGNUP_REQUEST,
   });
 
-  return fetch('http://localhost:8000/v1/signup', {
-    method: 'POST',
-    body: JSON.stringify({
-      username,
-      password,
-    }),
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
+  return callApi('signup', undefined, { method: 'POST' }, {
+    username,
+    password,
   })
-    .then(res => res.json())
-    .then((json) => {
-      if (json.success) {
-        return json;
-      }
-      throw new Error(json.message);
-    })
     .then((json) => {
       if (!json.token) {
         throw new Error('Token has not been provided!');
@@ -49,24 +35,10 @@ export const login = (username, password) => (dispatch) => {
     type: types.LOGIN_REQUEST,
   });
 
-  return fetch('http://localhost:8000/v1/login', {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      username,
-      password,
-    }),
+  return callApi('login', undefined, { method: 'POST' }, {
+    username,
+    password,
   })
-    .then(res => res.json())
-    .then((json) => {
-      if (json.success) {
-        return json;
-      }
-      throw new Error(json.message);
-    })
     .then((json) => {
       if (!json.token) {
         throw new Error('Token has not been provided!');
@@ -101,20 +73,7 @@ export const recieveAuth = () => (dispatch, getState) => {
     });
   }
 
-  return fetch('http://localhost:8000/v1/users/me', {
-    headers: {
-      'Authorization': `Bearer ${token}`,
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-    },
-  })
-    .then(res => res.json())
-    .then((json) => {
-      if (json.success) {
-        return json;
-      }
-      throw new Error(json.message);
-    })
+  return callApi('users/me', token)
     .then(json => dispatch({
       type: types.RECIEVE_AUTH_SUCCESS,
       payload: json,
