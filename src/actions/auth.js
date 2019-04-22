@@ -14,7 +14,6 @@ export const signup = (username, password) => (dispatch) => {
       if (!json.token) {
         throw new Error('Token has not been provided!');
       }
-
       // Save JWT to localStorage
       localStorage.setItem('token', json.token);
 

@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-fetch';
 
 const callApi = (endpoint, token, options, payload) => {
+  console.log(endpoint, 'endpoint')
   const authHeaders = token ? {
     'Authorization': `Bearer ${token}`,
   } : {};

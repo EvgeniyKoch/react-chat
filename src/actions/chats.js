@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import * as types from '../constants/chats';
 import callApi from '../utils/call-api';
 import { redirect } from './services';
@@ -18,10 +19,10 @@ export const fetchMyChats = () => (dispatch, getState) => {
     }));
 };
 
-export const fetchAllChat = () => (dispatch, getState) => {
+export const fetchAllChats = () => (dispatch, getState) => {
   const { token } = getState().auth;
   dispatch({
-    type: types.FETCH_ALL_CHATS_FEILURE,
+    type: types.FETCH_ALL_CHATS_REQUEST,
   });
   return callApi('chats', token)
     .then(data => dispatch({
