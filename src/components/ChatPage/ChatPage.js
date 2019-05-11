@@ -5,9 +5,42 @@ import Sidebar from '../Sidebar';
 import ChatHeader from '../ChatHeader';
 import Chat from '../Chat';
 
-import { messages } from '../../mock-data';
+class ChatPage extends React.Component {
+  static propTypes = {
+    match: PropTypes.shape({
+      params: PropTypes.object.isRequired,
+    }).isRequired,
+    fetchAllChats: PropTypes.func.isRequired,
+    fetchMyChats: PropTypes.func.isRequired,
+    logout: PropTypes.func.isRequired,
+    chats: PropTypes.shape({
+      active: PropTypes.object,
+      my: PropTypes.array.isRequired,
+      all: PropTypes.array.isRequired,
+    }).isRequired,
+    activeUser: PropTypes.shape({
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
+      username: PropTypes.string,
+      isMember: PropTypes.bool.isRequired,
+      isCreator: PropTypes.bool.isRequired,
+      isChatMember: PropTypes.bool.isRequired,
+    }).isRequired,
+    createChat: PropTypes.func.isRequired,
+    joinChat: PropTypes.func.isRequired,
+    leaveChat: PropTypes.func.isRequired,
+    deleteChat: PropTypes.func.isRequired,
+    sendMessage: PropTypes.func.isRequired,
+    messages: PropTypes.arrayOf(PropTypes.shape({
+      chatId: PropTypes.string.isRequired,
+      content: PropTypes.string.isRequired,
+      sender: PropTypes.object.isRequired,
+      createdAt: PropTypes.string.isRequired,
+    })).isRequired,
+    editUser: PropTypes.func.isRequired,
+    isConnected: PropTypes.bool.isRequired,
+  };
 
-export default class ChatPage extends React.Component {
   static propTypes = {
     fetchAllChats: PropTypes.func,
     fetchMyChats: PropTypes.func,
@@ -23,14 +56,43 @@ export default class ChatPage extends React.Component {
   }
 
   render() {
-    const { chats } = this.props;
-    console.log(chats);
+    const {
+      logout,
+      chats,
+      activeUser,
+      createChat,
+      joinChat,
+      leaveChat,
+      deleteChat,
+      sendMessage,
+      messages,
+      editUser,
+      isConnected,
+    } = this.props;
+
     return (
       <React.Fragment>
-        <ChatHeader />
-        <Sidebar chats={chats} />
-        <Chat messages={messages} />
+        <ChatHeader
+          isConnected={isConnected}
+          activeUser={activeUser}
+          activeChat={chats.active}
+          leaveChat={leaveChat}
+          deleteChat={deleteChat}
+          logout={logout}
+          editUser={editUser}
+        />
+        <Sidebar isConnected={isConnected} chats={chats} createChat={createChat} />
+        <Chat
+          isConnected={isConnected}
+          messages={messages}
+          activeChat={chats.active}
+          activeUser={activeUser}
+          sendMessage={sendMessage}
+          joinChat={joinChat}
+        />
       </React.Fragment>
     );
   }
 }
+
+export default ChatPage;
