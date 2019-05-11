@@ -62,6 +62,21 @@ export const logout = () => (dispatch) => {
   dispatch({
     type: types.LOGOUT_REQUEST,
   });
+
+  return callApi('/logout')
+    .then((json) => {
+      // Remove JWT from localStorage
+      localStorage.removeItem('token');
+      // redirect to welcome in case of failure
+      dispatch({
+        type: types.LOGOUT_SUCCESS,
+        payload: json,
+      });
+    })
+    .catch(reason => dispatch({
+      type: types.LOGIN_FAILURE,
+      payload: reason,
+    }));
 };
 
 export const recieveAuth = () => (dispatch, getState) => {
