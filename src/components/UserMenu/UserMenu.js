@@ -45,13 +45,13 @@ class UserMenu extends React.Component {
     lastName: '',
   };
 
-  // componentWillReceiveProps(nextProps) {
-  //   this.setState({
-  //     username: nextProps.activeUser.username,
-  //     firstName: nextProps.activeUser.firstName,
-  //     lastName: nextProps.activeUser.lastName,
-  //   });
-  // }
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      username: nextProps.activeUser.username,
+      firstName: nextProps.activeUser.firstName,
+      lastName: nextProps.activeUser.lastName,
+    });
+  }
 
   handleClick = (event) => {
     this.setState({ anchorEl: event.currentTarget });

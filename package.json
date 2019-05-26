@@ -19,6 +19,7 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "socket.io-client": "^2.2.0",
     "typeface-roboto": "0.0.54"
   },
   "eslintConfig": {
@@ -39,6 +40,7 @@
     "eslint-loader": "^2.1.2",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.12.4"
+    "eslint-plugin-react": "^7.12.4",
+    "jshint": "^2.10.2"
   }
 }

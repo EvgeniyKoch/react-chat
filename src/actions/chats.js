@@ -1,3 +1,4 @@
+/* eslint no-underscore-dangle: 0 */
 import * as types from '../constants/chats';
 import callApi from '../utils/call-api';
 import { redirect } from './services';
@@ -5,12 +6,12 @@ import { redirect } from './services';
 export function fetchAllChats() {
   return (dispatch, getState) => {
     const state = getState();
-    // const { isFetching } = state.services;
+    const { isFetching } = state.services;
     const { token } = state.auth;
 
-    // if (isFetching.allChats) {
-    //   return Promise.resolve();
-    // }
+    if (isFetching.allChats) {
+      return Promise.resolve();
+    }
 
     dispatch({
       type: types.FETCH_ALL_CHATS_REQUEST,
@@ -31,12 +32,12 @@ export function fetchAllChats() {
 export function fetchMyChats() {
   return (dispatch, getState) => {
     const state = getState();
-    // const { isFetching } = state.services;
+    const { isFetching } = state.services;
     const { token } = state.auth;
 
-    // if (isFetching.myChats) {
-    //   return Promise.resolve();
-    // }
+    if (isFetching.myChats) {
+      return Promise.resolve();
+    }
 
     dispatch({
       type: types.FETCH_MY_CHATS_REQUEST,
@@ -57,12 +58,12 @@ export function fetchMyChats() {
 export function fetchChat(chatId) {
   return (dispatch, getState) => {
     const state = getState();
-    // const { isFetching } = state.services;
+    const { isFetching } = state.services;
     const { token } = state.auth;
 
-    // if (isFetching.chat) {
-    //   return Promise.resolve();
-    // }
+    if (isFetching.chat) {
+      return Promise.resolve();
+    }
 
     dispatch({
       type: types.FETCH_CHAT_REQUEST,
@@ -110,12 +111,12 @@ export function setActiveChat(chatId) {
 export function createChat(title) {
   return (dispatch, getState) => {
     const state = getState();
-    // const { isFetching } = state.services;
+    const { isFetching } = state.services;
     const { token } = state.auth;
 
-    // if (isFetching.createChat) {
-    //   return Promise.resolve();
-    // }
+    if (isFetching.createChat) {
+      return Promise.resolve();
+    }
 
     dispatch({
       type: types.CREATE_CHAT_REQUEST,
@@ -150,12 +151,12 @@ export function createChat(title) {
 export function joinChat(chatId) {
   return (dispatch, getState) => {
     const state = getState();
-    // const { isFetching } = state.services;
+    const { isFetching } = state.services;
     const { token } = state.auth;
 
-    // if (isFetching.joinChat) {
-    //   return Promise.resolve();
-    // }
+    if (isFetching.joinChat) {
+      return Promise.resolve();
+    }
 
     dispatch({
       type: types.JOIN_CHAT_REQUEST,
@@ -183,12 +184,12 @@ export function joinChat(chatId) {
 export function leaveChat(chatId) {
   return (dispatch, getState) => {
     const state = getState();
-    // const { isFetching } = state.services;
+    const { isFetching } = state.services;
     const { token } = state.auth;
 
-    // if (isFetching.leaveChat) {
-    //   return Promise.resolve();
-    // }
+    if (isFetching.leaveChat) {
+      return Promise.resolve();
+    }
 
     dispatch({
       type: types.LEAVE_CHAT_REQUEST,
@@ -220,12 +221,12 @@ export function leaveChat(chatId) {
 export function deleteChat(chatId) {
   return (dispatch, getState) => {
     const state = getState();
-    // const { isFetching } = state.services;
+    const { isFetching } = state.services;
     const { token } = state.auth;
 
-    // if (isFetching.deleteChat) {
-    //   return Promise.resolve();
-    // }
+    if (isFetching.deleteChat) {
+      return Promise.resolve();
+    }
 
     dispatch({
       type: types.DELETE_CHAT_REQUEST,
@@ -253,28 +254,3 @@ export function deleteChat(chatId) {
       }));
   };
 }
-
-export const sendMessage = (chatId, content) => (dispatch, getState) => {
-  const { token } = getState().auth;
-  dispatch({
-    type: types.SEND_MESSAGE_REQUEST,
-    payload: { chatId, content },
-  });
-
-  return callApi(`/chats/${chatId}`, token, { method: 'POST' }, {
-    data: { content },
-  })
-    .then((data) => {
-      dispatch({
-        type: types.SEND_MESSAGE_SUCCESS,
-        payload: data,
-      });
-
-      // Refresh message from chat
-      dispatch(fetchChat(chatId));
-    })
-    .catch(reason => dispatch({
-      type: types.SEND_MESSAGE_FAILURE,
-      payload: reason,
-    }));
-};

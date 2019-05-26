@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import { withRouter } from 'react-router-dom';
 import { withStyles } from 'material-ui/styles';
 import ChatMessageList from '../ChatMessageList';
@@ -25,14 +24,20 @@ const Chat = ({
   activeUser,
   joinChat,
   sendMessage,
+  isConnected,
 }) => (
   <main className={classes.chatLayout}>
     <ChatMessageList messages={messages} activeUser={activeUser} />
-    <MessageInput
-      sendMessage={content => sendMessage(activeChat._id, content)}
-      onJoinButtonClick={joinChat}
-      activeUser={activeUser}
-    />
+    {activeChat && (
+      <MessageInput
+        disabled={!isConnected}
+        sendMessage={sendMessage}
+        showJoinButton={!activeUser.isChatMember}
+        // eslint-disable-next-line
+        onJoinButtonClick={() => joinChat(activeChat._id)}
+        activeUser={activeUser}
+      />
+    )}
   </main>
 );
 
@@ -58,6 +63,7 @@ Chat.propTypes = {
   }).isRequired,
   joinChat: PropTypes.func.isRequired,
   sendMessage: PropTypes.func.isRequired,
+  isConnected: PropTypes.bool.isRequired,
 };
 
 Chat.defaultProps = {

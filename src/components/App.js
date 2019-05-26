@@ -1,5 +1,4 @@
 import React from 'react';
-import { Provider } from 'react-redux';
 import {
   Router, Route, Switch, Redirect,
 } from 'react-router-dom';
@@ -10,7 +9,6 @@ import PrivateRoute from '../containers/PrivateRoute';
 
 import { WelcomePage, ChatPage } from '../containers';
 import history from '../utils/history';
-import configureStore from '../store';
 
 const styles = theme => ({
   root: {
@@ -22,20 +20,16 @@ const styles = theme => ({
   },
 });
 
-const store = configureStore();
-
 const App = ({ classes }) => (
-  <Provider store={store}>
-    <Router history={history}>
-      <div className={classes.root}>
-        <Switch>
-          <Route exact path="/(welcome)?" component={WelcomePage} />
-          <PrivateRoute path="/chat" component={ChatPage} />
-          <Redirect to="/" />
-        </Switch>
-      </div>
-    </Router>
-  </Provider>
+  <Router history={history}>
+    <div className={classes.root}>
+      <Switch>
+        <Route exact path="/(welcome)?" component={WelcomePage} />
+        <PrivateRoute path="/chat" component={ChatPage} />
+        <Redirect to="/" />
+      </Switch>
+    </div>
+  </Router>
 );
 
 App.propTypes = {

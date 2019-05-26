@@ -1,7 +1,6 @@
 /* eslint no-underscore-dangle: 0 */
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
@@ -32,6 +31,7 @@ const ChatHeader = ({
   leaveChat,
   deleteChat,
   editUser,
+  isConnected,
 }) => (
   <AppBar color="primary" className={classes.appBar}>
     <Toolbar color="contrast">
@@ -41,6 +41,7 @@ const ChatHeader = ({
           <Typography variant="title" className={classes.appBarTitle}>
             {activeChat.title}
             <ChatMenu
+              disabled={!isConnected}
               activeUser={activeUser}
               onLeaveClick={() => leaveChat(activeChat._id)}
               onDeleteClick={() => deleteChat(activeChat._id)}
@@ -53,6 +54,7 @@ const ChatHeader = ({
         </Typography>
       )}
       <UserMenu
+        disabled={!isConnected}
         activeUser={activeUser}
         onLogoutClick={logout}
         onEditProfileClick={editUser}
@@ -76,6 +78,7 @@ ChatHeader.propTypes = {
   leaveChat: PropTypes.func.isRequired,
   deleteChat: PropTypes.func.isRequired,
   editUser: PropTypes.func.isRequired,
+  isConnected: PropTypes.bool.isRequired,
 };
 
 ChatHeader.defaultProps = {
