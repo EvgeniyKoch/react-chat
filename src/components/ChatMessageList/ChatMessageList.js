@@ -63,7 +63,6 @@ class ChatMessageList extends React.Component {
     const {
       classes, messages, match, activeUser,
     } = this.props;
-
     // If there's no active chat, then show a tip
     if (!match.params.chatId) {
       return (

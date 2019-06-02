@@ -54,7 +54,6 @@ class MessageInput extends React.Component {
     } = this.props;
 
     const { value } = this.state;
-
     return (
       <div className={classes.messageInputWrapper}>
         <Paper className={classes.messageInput} elevation={6}>

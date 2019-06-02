@@ -1,3 +1,4 @@
+/* eslint no-use-before-define: 0 */
 import { combineReducers } from 'redux';
 import * as types from '../constants';
 
@@ -19,7 +20,7 @@ const activeId = (state = initialState.activeId, action) => {
     case types.DELETE_CHAT_SUCCESS:
       return null;
     case types.RECIEVE_DELETED_CHAT:
-      return state === getChatId(action.payload.chat) ? null : activeId;
+      return state === getChatId(action.payload.chat) ? null : state;
     default:
       return state;
   }
@@ -65,7 +66,8 @@ const byIds = (state = initialState.byIds, action) => {
           (ids, chat) => ({
             ...ids,
             [getChatId(chat)]: chat,
-          }), {},
+          }),
+          {},
         ),
       };
     case types.JOIN_CHAT_SUCCESS:
@@ -93,6 +95,7 @@ export default combineReducers({
   byIds,
 });
 
+// eslint-disable-next-line
 export const getChatId = chat => chat._id;
 export const getById = (state, id) => state.byIds[id];
 export const getByIds = (state, ids) => ids.map(id => getById(state, id));
